@@ -20,7 +20,7 @@
             <!-- /Page Header -->
 
             <div class="row">
-                <div class="col-lg-10">
+                <div class="col-lg-12">
                     @include('validate')
                     <a class="btn btn-primary" href="#post-add-modal" data-toggle="modal">Add new Post</a>
                     <div class="card">
@@ -34,9 +34,10 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Tigle</th>
-                                        <th>Slug</th>
                                         <th>Category</th>
+                                        <th>Tag</th>
                                         <th>Featured Image</th>
+                                        <th>Time</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -46,8 +47,21 @@
                                     @foreach( $all_data as $data )
                                     <tr>
                                         <td>{{ $loop -> index + 1 }}</td>
-                                        <td>{{ $data -> name }}</td>
-                                        <td>{{ $data -> slug }}</td>
+                                        <td>{{ $data -> title }}</td>
+                                        <td>
+                                            @foreach($data -> categories as $category)
+                                                {{ $category -> name }} |
+                                            @endforeach
+                                        </td>
+                                        <td></td>
+                                        <td>
+                                            @if( !empty($data -> featured_image) )
+                                            <img style="width: 60px; height: 60px;" src="{{ URL::to('/') }}/media/posts/{{ $data -> featured_image }}" alt="">
+                                            @endif
+                                        </td>
+                                        <td>
+                                            {{ $data -> created_at -> diffForHumans() }}
+                                        </td>
                                         <td>
                                             @if( $data -> status == 'Published' )
                                                 <span class="badge badge-success">Published</span>
@@ -57,12 +71,12 @@
                                         </td>
                                         <td>
                                             @if( $data -> status == 'Published' )
-                                                <a href="{{ route('tag.unpublished', $data->id) }}" class="btn btn-danger btn-sm"><i class="fas fa-eye-slash"></i></a>
+                                                <a href="{{ route('post.unpublished', $data->id) }}" class="btn btn-danger btn-sm"><i class="fas fa-eye-slash"></i></a>
                                             @else
-                                                <a href="{{ route('tag.published', $data->id) }}" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>
+                                                <a href="{{ route('post.published', $data->id) }}" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>
                                             @endif
                                             <a id="edit_tag" edit_id="{{ $data->id }}" class="btn btn-warning btn-sm" href="#post-edit-modal" data-toggle="modal">Edit</a>
-                                                <form class="d-inline" action="{{ route('post-tag.destroy', $data->id) }}" method="POST">
+                                                <form class="d-inline" action="{{ route('post.destroy', $data->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="btn btn-danger btn-sm">Delete</button>
@@ -86,19 +100,21 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title">Add New Post</h4>
+                            <button class="close float-left" data-dismiss="modal">&times;</button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ route('post-tag.store') }}" method="POST">
+                            <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
-                                    <input name="name" class="form-control" type="text" placeholder="Name">
+                                    <input name="title" class="form-control" type="text" placeholder="Title">
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-10">
+                                        <label for="">Category</label>
                                         @foreach($categories as $category)
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox" name="checkbox[]"> {{ $category->name }}
+                                                <input type="checkbox" name="category[]" value="{{ $category->id }}"> {{ $category->name }}
                                             </label>
                                         </div>
                                         @endforeach
@@ -109,7 +125,7 @@
                                     <input name="featured_image" class="d-none" type="file" id="f_image" >
                                     <img class="w-100" id="post_featured_image_load" src="" alt="">
                                 </div>
-                                <textarea id="text_editor"></textarea>
+                                <textarea id="text_editor" name="content"></textarea>
                                 <div class="form-group">
                                     <input class="btn btn-primary btn-block" type="submit" value="Add new">
                                 </div>
@@ -126,6 +142,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title">Update Post</h4>
+                            <button class="close float-left" data-dismiss="modal">&times;</button>
                         </div>
                         <div class="modal-body">
                             <form action="{{ route('tag.update') }}" method="POST">
