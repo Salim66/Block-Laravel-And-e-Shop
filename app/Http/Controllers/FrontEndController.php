@@ -13,14 +13,17 @@ class FrontEndController extends Controller
     }
 
     public function blogPostPage(){
-        $all_data = Post::latest()->get();
+        $all_post = Post::latest()->paginate(4);
         return view('frontend.post.blog', [
-            'all_data'=> $all_data,
+            'all_post'=> $all_post,
         ]);
     }
 
-    public function blogSinglePage(){
-        return view('frontend.post.blog-single');
+    public function blogSinglePage($slug){
+        $single_post = Post::where('slug', $slug) -> first();
+        return view('frontend.post.blog-single', [
+            'single_post' => $single_post,
+        ]);
     }
 
 }
