@@ -47,7 +47,7 @@
                 </div>
               </div>
               <div class="post-body">
-                  {!! htmlspecialchars_decode($post->content) !!}
+                  {!! Str::of(htmlspecialchars_decode($post->content)) -> words('40', "<span style='color:red;'> >>></span>") !!}
               <p><a href="{{ route('blog.single', $post -> slug) }}" class="btn btn-color btn-sm">Read More</a>
                 </p>
               </div>

@@ -10,6 +10,7 @@
 
         //Text Editor
         CKEDITOR.replace('text_editor');
+        CKEDITOR.replace('text_editor_edit');
 
 
         //Edit Category System
@@ -48,6 +49,24 @@
             let post_image_url = URL.createObjectURL(event.target.files[0]);
             $('img#post_featured_image_load').attr('src', post_image_url);
             $('label#label_img').css('display', 'none');
+        });
+
+        //Post Edit
+        $(document).on('click', '#edit_post', function(event){
+            event.preventDefault();
+            //Get Edit ID
+            let edit_id = $(this).attr('edit_id');
+
+            $.ajax({
+                url : 'post-edit/'+edit_id,
+                success : function(data){
+                    $('#post_modal_edit input[name="title"]').val(data.title);
+                    $('#post_modal_edit img#post_featured_image_load').attr('src', 'media/posts/' +data.image)
+                    $('#post_modal_edit div.cl').html(data.cat_list);
+                }
+            });
+
+            $('#post_modal_edit').modal('show');
         });
 
 

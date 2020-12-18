@@ -20,7 +20,7 @@
             <!-- /Page Header -->
 
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-md-12">
                     @include('validate')
                     <a class="btn btn-primary" href="#post-add-modal" data-toggle="modal">Add new Post</a>
                     <div class="card">
@@ -75,7 +75,7 @@
                                             @else
                                                 <a href="{{ route('post.published', $data->id) }}" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>
                                             @endif
-                                            <a id="edit_tag" edit_id="{{ $data->id }}" class="btn btn-warning btn-sm" href="#post-edit-modal" data-toggle="modal">Edit</a>
+                                            <a id="edit_post" edit_id="{{ $data->id }}" class="btn btn-warning btn-sm" href="#" data-toggle="modal">Edit</a>
                                                 <form class="d-inline" action="{{ route('post.destroy', $data->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
@@ -137,23 +137,33 @@
 
 
             {{--Start Category Edit Modal--}}
-            <div id="post-edit-modal" class="modal fade">
-                <div class="modal-dialog modal-dialog-centered">
+            <div id="post_modal_edit" class="modal fade">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title">Update Post</h4>
                             <button class="close float-left" data-dismiss="modal">&times;</button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ route('tag.update') }}" method="POST">
+                            <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                @method('PUT')
                                 <div class="form-group">
-                                    <input name="name" class="form-control" type="text" placeholder="Name">
-                                    <input name="id" type="hidden">
+                                    <input name="title" class="form-control" type="text" placeholder="Title">
                                 </div>
                                 <div class="form-group">
-                                    <input class="btn btn-primary btn-block" type="submit" value="Update">
+                                    <div class="col-md-10">
+                                        <label for="">Category</label>
+                                        <div class="cl"></div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label id="label_img" class="text-success bg-gradient" for="f_image"><i class="far fa-file-image fa-5x"></i></label>
+                                    <input name="featured_image" class="d-none" type="file" id="f_image" >
+                                    <img class="w-100" id="post_featured_image_load" src="" alt="">
+                                </div>
+                                <textarea id="text_editor_edit" name="content"></textarea>
+                                <div class="form-group">
+                                    <input class="btn btn-primary btn-block" type="submit" value="Add new">
                                 </div>
                             </form>
                         </div>

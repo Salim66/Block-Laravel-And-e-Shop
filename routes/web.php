@@ -47,5 +47,6 @@ Route::get('post-tag-published/{id}', 'App\Http\Controllers\TagController@publis
 
 //Post Routes
 Route::resource('post', 'App\Http\Controllers\PostController');
+Route::get('post-edit/{id}', 'App\Http\Controllers\PostController@edit');
 Route::get('post.unpublished/{id}', 'App\Http\Controllers\PostController@unpublished')->name('post.unpublished');
 Route::get('post.published/{id}', 'App\Http\Controllers\PostController@published')->name('post.published');

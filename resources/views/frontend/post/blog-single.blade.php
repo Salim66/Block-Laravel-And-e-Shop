@@ -53,7 +53,7 @@
                             <li>
                                 <div class="comment">
                                     <div class="comment-pic">
-                                        <img src="frontend/images/team/1.jpg" alt="" class="img-circle">
+                                        <img src="{{ asset('frontend/images/team/1.jpg')}}" alt="" class="img-circle">
                                     </div>
                                     <div class="comment-text">
                                         <h5 class="upper">Jesse Pinkman</h5><span class="comment-date">Posted on 29 September at 10:41</span>
@@ -64,7 +64,7 @@
                                     <li>
                                         <div class="comment">
                                             <div class="comment-pic">
-                                                <img src="frontend/images/team/2.jpg" alt="" class="img-circle">
+                                                <img src="{{ asset('frontend/images/team/2.jpg')}}" alt="" class="img-circle">
                                             </div>
                                             <div class="comment-text">
                                                 <h5 class="upper">Arya Stark</h5><span class="comment-date">Posted on 29 September at 10:41</span>
@@ -78,7 +78,7 @@
                             <li>
                                 <div class="comment">
                                     <div class="comment-pic">
-                                        <img src="frontend/images/team/3.jpg" alt="" class="img-circle">
+                                        <img src="{{ asset('frontend/images/team/3.jpg')}}" alt="" class="img-circle">
                                     </div>
                                     <div class="comment-text">
                                         <h5 class="upper">Rust Cohle</h5><span class="comment-date">Posted on 29 September at 10:41</span>

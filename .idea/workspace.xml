@@ -3,6 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="b7fa3ed0-ac3d-4118-9929-433ff2857854" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PostController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PostController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/admin/assets/js/custom/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/backend/admin/assets/js/custom/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/media/posts/ad76a727de28174d2a18bcccbf423362.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/post/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/post/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontend/post/blog-single.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/post/blog-single.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontend/post/blog.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/post/blog.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,6 +177,7 @@
       <workItem from="1606790762521" duration="562000" />
       <workItem from="1606877308779" duration="30000" />
       <workItem from="1607165639602" duration="584000" />
+      <workItem from="1608283662052" duration="5941000" />
     </task>
     <servers />
   </component>
